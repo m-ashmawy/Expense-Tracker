@@ -1,12 +1,13 @@
 import "./ExpenseItem.css";
+import ExpenseDate from "./ExpenseDate";
 
-function ExpenseItem(props) {
+function ExpenseItem({ data }) {
   return (
     <div className="expense-item">
-      <div>{props.data.date.toUTCString()}</div>
+      <ExpenseDate date={data.date} />
       <div className="expense-item__description">
-        <h2>{props.data.title}</h2>
-        <div className="expense-item__price">${props.data.amount}</div>
+        <h2>{data.title}</h2>
+        <div className="expense-item__price">${data.amount}</div>
       </div>
     </div>
   );
