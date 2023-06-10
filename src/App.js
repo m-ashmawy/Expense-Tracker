@@ -1,4 +1,5 @@
 import Expenses from "./components/Expenses/Expenses";
+import NewExpense from "./components/NewExpense/NewExpense";
 
 function App() {
   const expenses = [
@@ -22,9 +23,17 @@ function App() {
       date: new Date(2021, 5, 12),
     },
   ];
+
+  const onSaveNewExpense = (sumbittedExpense) => {
+    const fullNewExpense = {
+      ...sumbittedExpense,
+      id: Math.random().toString(),
+    };
+    console.log(fullNewExpense);
+  };
   return (
     <div>
-      <h2>Let's get started!</h2>
+      <NewExpense onSaveNewExpense={onSaveNewExpense} />
       <Expenses expenses={expenses} />
     </div>
   );
