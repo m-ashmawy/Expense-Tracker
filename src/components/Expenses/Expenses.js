@@ -10,6 +10,18 @@ export default function Expenses({ expenses }) {
   const filterChangeHandler = (filteredYear) => {
     setCurrentYear(filteredYear);
   };
+
+  let filteredExpenses = expenses.filter(
+    (item) => item.date.getFullYear().toString() === currentYear
+  );
+
+  let expensesContent = filteredExpenses.length ? (
+    filteredExpenses.map((expense) => (
+      <ExpenseItem key={expense.id} data={expense} />
+    ))
+  ) : (
+    <p>No Expenses Found!</p>
+  );
   return (
     <Card className="expenses">
       <ExpensesFilter
@@ -17,11 +29,7 @@ export default function Expenses({ expenses }) {
         currentYear={currentYear}
       />
 
-      {expenses
-        .filter((item) => item.date.getFullYear().toString() === currentYear)
-        .map((expense) => (
-          <ExpenseItem key={expense.id} data={expense} />
-        ))}
+      {expensesContent}
     </Card>
   );
 }
